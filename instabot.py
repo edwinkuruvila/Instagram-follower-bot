@@ -39,21 +39,17 @@ def addP(inv):
         '/html/body/div[1]/section/main/section/div[3]/div[2]/div[1]/a/div').click()
     driver.refresh()
     time.sleep(2)
-    a = 0
     print('Adding followers...')
     try:
-        for _ in range(int(inv)):
-            a += 1
+        for i in range(1, int(inv)+1):
             driver.find_element_by_xpath(
-                '//*[@id="react-root"]/section/main/div/div[2]/div/div/div['+str(a)+']/div[3]/button').click()
-            if a == 7:
-                a = 0
+                '//*[@id="react-root"]/section/main/div/div[2]/div/div/div['+str(i)+']/div[3]/button').click()
+            if i % 7 == 0:
                 driver.refresh()
                 time.sleep(2)
     except:
         print('Error')
         time.sleep(1)
-        pass
     driver.find_element_by_xpath(
         '/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[1]/div/a').click()
     print('Done')
@@ -69,16 +65,13 @@ def remF(inv):
     driver.find_element_by_xpath(
         '/html/body/div[1]/section/main/div/header/section/ul/li[3]/a').click()
     time.sleep(1)
-    a = 0
     try:
-        for _ in range(int(inv)):
-            a += 1
+        for i in range(1, int(inv)+1):
             driver.find_element_by_xpath(
-                '/html/body/div[4]/div/div/div[2]/ul/div/li['+str(a)+']/div/div[3]/button').click()
+                '/html/body/div[5]/div/div/div[2]/ul/div/li['+str(i)+']/div/div[3]/button').click()
             driver.find_element_by_xpath(
-                '/html/body/div[5]/div/div/div/div[3]/button[1]').click()
-            if a == 7:
-                a = 0
+                '/html/body/div[6]/div/div/div/div[3]/button[1]').click()
+            if i % 7 == 0:
                 driver.refresh()
                 time.sleep(1)
                 driver.find_element_by_xpath(
@@ -86,37 +79,34 @@ def remF(inv):
                 time.sleep(.5)
     except:
         print('Error')
-        pass
     time.sleep(.5)
     driver.find_element_by_xpath(
-        '/html/body/div[4]/div/div/div[1]/div/div[2]/button').click()
+        '/html/body/div[5]/div/div/div[1]/div/div[2]/button').click()
     driver.find_element_by_xpath(
         '/html/body/div[1]/section/nav/div[2]/div/div/div[3]/div/div[1]/div/a').click()
 
 
-print('Instagram follower bot\n'+('-'*25))
-username = input('Instagram follower bot\n'+('-'*25)+'\nInstagram Username:')
+username = input('Instagram follower bot\n'+('-'*25)+'\nInstagram Username: ')
 password = input('Instagram Password: ')
 login()
 while True:
-    num = 0
     clear()
     print('Instagram follower bot\n'+('-'*25))
     chc = input('1: Add followers\n2: Remove followers\n0: Exit\nYour input: ')
-    try:
-        if int(chc) == 1:
-            num = input(
-                'How many people do you want to add?\nNumber: ')
-            addP(num)
-        elif int(chc) == 2:
-            num = input(
-                'How many people do you want to remove?\nNumber: ')
-            remF(num)
-        else:
-            break
-    except:
+    if chc == '1':
+        num = input(
+            'How many people do you want to add?\nNumber: ')
+        addP(num)
+    elif chc == '2':
+        num = input(
+            'How many people do you want to remove?\nNumber: ')
+        remF(num)
+    elif chc == '0':
+        break
+    else:
         print('Error, please enter 1 2 or 0')
         time.sleep(2)
 driver.quit()
 clear()
 print('Program Done')
+
